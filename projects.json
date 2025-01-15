@@ -1,0 +1,16 @@
+{
+    "projects": [
+        {
+            "name": "Rapport Master CNN",
+            "url": "projects/2022_VIGOUROUX_M2CNN.pdf" 
+        },
+        {
+            "name": "Scanning Organ Detection",
+            "url": "projects/Haubert_vigouroux_Raidium_compressed.pdf"
+        },
+        {
+            "name": "Rapport Master MVA",
+            "url": "projects/2022_VIGOUROUX_M2MVA.pdf"
+        }
+    ]
+}

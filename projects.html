@@ -6,15 +6,31 @@
     <title>Mathias Vigouroux's Projects</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('projects.json')
+                .then(response => response.json())
+                .then(data => {
+                    const projectsList = document.getElementById('projects-list');
+                    data.projects.forEach(project => {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = project.url;
+                        link.textContent = project.name;
+                        link.target = '_blank';
+                        listItem.appendChild(link);
+                        projectsList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching projects:', error));
+        });
+    </script>
 </head>
 <body>
     <h1>My Projects</h1>
     <p>Here are some of the projects I have worked on:</p>
-    <!-- Add your projects here -->
-    <ul>
-        <li>Project 1</li>
-        <li>Project 2</li>
-        <li>Project 3</li>
+    <ul id="projects-list">
+        <!-- Project links will be dynamically inserted here -->
     </ul>
     <!-- Link back to the home page -->
     <a href="index.html">Back to Home</a>
