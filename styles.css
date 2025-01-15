@@ -7,15 +7,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #0b3d0b; /* Dark green background */
 }
 
-h1 {
-    color: #333;
+h1, h2 {
+    color: #e0ffe0; /* Light green text */
 }
 
 p {
-    color: #666;
+    color: #b3ffb3; /* Lighter green text */
 }
 
 /* New styles for circular image */
@@ -30,7 +30,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007BFF;
+    background-color: #006400; /* Dark green button */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -38,7 +38,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #004d00; /* Darker green on hover */
 }
 
 section {
@@ -48,10 +48,25 @@ section {
 
 a {
     margin-top: 20px; /* Add some space between elements */
-    color: #007BFF;
+    color: #00cc00; /* Bright green links */
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* New styles for social media links */
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    margin: 0 10px;
+    color: #00cc00; /* Bright green */
+    font-size: 24px;
+}
+
+.social-media a:hover {
+    color: #009900; /* Darker green on hover */
 }
