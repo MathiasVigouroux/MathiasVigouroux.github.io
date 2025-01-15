@@ -123,3 +123,8 @@ header nav a {
 header nav a:hover {
     text-decoration: underline;
 }
+
+/* New styles for WikiHow page */
+body.wikihow {
+    color: #800080; /* Purple text color */
+}
