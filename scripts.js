@@ -1,15 +1,8 @@
 const popularNames = [
-    "Muhammad", "Li Wei", "Wang Wei", "James", "John", "Maria", "Ana", "Zhang Wei", "Wei Wang", "Li Na",
-    "David", "Carlos", "Antonio", "José", "Manuel", "Ali", "Ibrahim", "Sofia", "Elena", "Anna",
-    "Juan", "Miguel", "Luis", "Chen Wei", "Li Ming", "Ahmed", "Hassan", "Fatima", "Sarah", "Emma",
-    "Oliver", "Jack", "Harry", "George", "Noah", "Mohammed", "William", "Leonardo", "Alessandro", "Giuseppe",
-    "Yang", "Wu", "Zhang", "Liu", "Chen", "Wang", "Li", "Smith", "Johnson", "Williams",
-    "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez",
-    "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
-    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker", "Young", "Allen",
-    "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", "Nelson",
-    "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts", "Gomez", "Phillips", "Evans"
-];
+    "Yuri Gagarin", "Alan Shepard", "Neil Armstrong", "Valentina Tereshkova", "Thomas Pesquet",
+    "Sally Ride", "Buzz Aldrin", "Chris Hadfield", "Kalpana Chawla", "Michael Collins", "John Glenn", 
+    "Sunita Williams", "Peggy Whitson", "Fyodor Yurchikhin", "Koichi Wakata", "Jessica Watkins",
+    "Liu Yang", "Rakesh Sharma", "Mae Jemison", "Yi So-yeon", "Guion Bluford", "Ellen Ochoa"];
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Document is ready!');
