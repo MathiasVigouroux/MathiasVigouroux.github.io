@@ -2,7 +2,7 @@ const popularNames = [
     "Yuri Gagarin", "Alan Shepard", "Neil Armstrong", "Valentina Tereshkova", "Thomas Pesquet",
     "Sally Ride", "Buzz Aldrin", "Chris Hadfield", "Kalpana Chawla", "Michael Collins", "John Glenn", 
     "Sunita Williams", "Peggy Whitson", "Fyodor Yurchikhin", "Koichi Wakata", "Jessica Watkins",
-    "Liu Yang", "Rakesh Sharma", "Mae Jemison", "Yi So-yeon", "Guion Bluford", "Ellen Ochoa"];
+    "Liu Yang", "Rakesh Sharma", "Mae Jemison", "Yi So-yeon", "Guion Bluford", "Ellen Ochoa", "William Anders"];
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Document is ready!');
