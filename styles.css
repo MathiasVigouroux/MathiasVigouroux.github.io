@@ -2,20 +2,20 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    background-color: #0B0B1F; /* Deep space blue */
+    background-image: radial-gradient(circle at center, #1a1a3a 0%, #0B0B1F 100%);
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #1a1a1a; /* New dark gray background */
+    flex-direction: column;
 }
 
 h1, h2 {
-    color: #e0ffe0; /* Light green text */
+    color: #E8E8FF; /* Starlight white */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 p {
-    color: #b3ffb3; /* Lighter green text */
+    color: #B8B8FF; /* Cosmic lavender */
 }
 
 /* New styles for circular image */
@@ -29,8 +29,9 @@ img {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    color: #fff;
-    background-color: #006400; /* Dark green button */
+    color: #E8E8FF;
+    background-color: #4B0082; /* Deep indigo */
+    box-shadow: 0 0 15px rgba(75, 0, 130, 0.5);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -38,7 +39,7 @@ button {
 }
 
 button:hover {
-    background-color: #004d00; /* Darker green on hover */
+    background-color: #6A0DAD; /* Brighter purple */
 }
 
 section {
@@ -48,7 +49,8 @@ section {
 
 a {
     margin-top: 20px; /* Add some space between elements */
-    color: #00cc00; /* Bright green links */
+    color: #00FFFF; /* Nebula cyan */
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
     text-decoration: none;
 }
 
@@ -71,11 +73,19 @@ social-media a:hover {
     color: #009900; /* Darker green on hover */
 }
 
-/* New styles for carousel */
+/* Update carousel container */
 .carousel {
+    width: 100%;
+    max-width: 800px;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    margin: 20px auto;
+    background-color: rgba(26, 26, 58, 0.8); /* Semi-transparent cosmic blue */
+    border: 1px solid #4B0082;
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.3);
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .carousel-item {
@@ -108,23 +118,261 @@ social-media a:hover {
 
 header {
     width: 100%;
-    background-color: #333;
+    background-color: rgba(11, 11, 31, 0.9); /* Transparent deep space blue */
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #00FFFF;
     padding: 10px 0;
     text-align: center;
+    position: fixed;  /* Change from sticky to fixed */
+    top: 0;
+    z-index: 100;
 }
 
-header nav a {
-    color: #fff;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 18px;
+/* Updated content wrapper */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-header nav a:hover {
-    text-decoration: underline;
+/* Resume Specific Styles */
+.resume {
+    line-height: 1.6;
+    background-color: #1a1a1a; /* Match the main dark background */
+    min-height: 100vh;
+    display: block;
+    position: relative; /* For stars positioning */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    padding-top: 60px; /* Space for fixed header */
 }
 
-/* New styles for WikiHow page */
-body.wikihow {
-    color: #800080; /* Purple text color */
+/* Clean up container styles */
+.container {
+    width: 600px;
+    padding: 2rem;
+    background-color: rgba(26, 26, 58, 0.8);
+    border: 1px solid #4B0082;
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.3);
+    position: relative;
+    z-index: 1;
+    margin: 80px 150px 20px 615px; /* top right bottom left - increased left margin significantly */
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.resume-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #e0ffe0;
+}
+
+.contact-info {
+    font-size: 0.9rem;
+    color: #B8B8FF;
+    margin-bottom: 1rem;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+}
+
+.resume-section {
+    margin-bottom: 2rem;
+}
+
+.resume-section h2 {
+    border-bottom: 2px solid #00FFFF;
+    padding-bottom: 0.5rem;
+    color: #E8E8FF;
+    margin-bottom: 1.5rem;
+}
+
+.resume-section ul {
+    color: #b3ffb3; /* Match the text color */
+}
+
+.entry {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.entry h3 {
+    margin-bottom: 0.3rem;
+    color: #e0ffe0;
+}
+
+.company, .institution {
+    font-style: italic;
+    color: #B8B8FF;
+    margin-bottom: 0.5rem;
+}
+
+.date {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #B8B8FF;
+    font-weight: bold;
+}
+
+.skills-list {
+    columns: 2;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skills-list li {
+    color: #B8B8FF; /* Match the text color */
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Use percentage width on mobile */
+        margin: 60px auto 20px;
+        padding: 1rem;
+    }
+    
+    .date {
+        position: static;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .skills-list {
+        columns: 1;
+    }
+}
+
+/* Add subtle star animation */
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Add this class to create star effect */
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* UFO Contact Section */
+.ufo-contact {
+    position: fixed;
+    left: 50px;
+    top: 50%; /* Adjust position to account for header */
+    transform: translateY(-50%);
+    width: 250px;
+    padding: 25px 20px;
+    background: linear-gradient(135deg, rgba(26, 26, 58, 0.9), rgba(11, 11, 31, 0.95));
+    border-radius: 50% 50% 10px 10px;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    animation: hover 4s ease-in-out infinite;
+    z-index: 2; /* Keep UFO above other elements */
+}
+
+/* UFO dome */
+.ufo-dome {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.1));
+    border-radius: 100% 100% 0 0;
+    border-top: 1px solid rgba(0, 255, 255, 0.4);
+}
+
+/* UFO lights */
+.ufo-lights {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.ufo-light {
+    width: 8px;
+    height: 8px;
+    background: #00FFFF;
+    border-radius: 50%;
+    animation: blink 1s alternate infinite;
+}
+
+/* Hover animation */
+@keyframes hover {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(10px); }
+}
+
+/* Blinking lights animation */
+@keyframes blink {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Adjust main content for UFO */
+@media (max-width: 1200px) {
+    .container {
+        margin: 80px 50px 20px 350px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ufo-contact {
+        position: static;
+        transform: none;
+        width: 90%;
+        margin: 20px auto;
+        animation: none;
+    }
+
+    .container {
+        width: 90%;
+        margin: 80px auto; /* Center on mobile */
+    }
+}
+
+/* Update media queries */
+@media (max-width: 1400px) {
+    .container {
+        margin: 80px 100px 20px 400px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        margin: 80px 50px 20px 350px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+        margin: 80px auto;
+    }
 }

@@ -34,8 +34,23 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error fetching projects:', error));
     }
+
+    createStars();
 });
 
 function sendEmail() {
     window.location.href = "mailto:mathias.vigouroux2@gmail.com?subject=Hello%20Mathias&body=I%20would%20like%20to%20get%20in%20touch%20with%20you.";
+}
+
+// Add stars to the background
+function createStars() {
+    const body = document.body;
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite`;
+        body.appendChild(star);
+    }
 }
