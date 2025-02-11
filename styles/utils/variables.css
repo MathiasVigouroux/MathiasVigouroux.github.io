@@ -1,0 +1,18 @@
+:root {
+    --space-blue: #0B0B1F;
+    --starlight-white: #E8E8FF;
+    --cosmic-lavender: #B8B8FF;
+    --deep-indigo: #4B0082;
+    --nebula-cyan: #00FFFF;
+    --console-green: #00cc00;
+    --cosmic-background: rgba(26, 26, 58, 0.8);
+    
+    /* Typography */
+    --font-main: Arial, sans-serif;
+    --font-console: "Courier New", Courier, monospace;
+    
+    /* Spacing */
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 40px;
+}

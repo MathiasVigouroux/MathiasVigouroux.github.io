@@ -1,0 +1,46 @@
+/* Add this class to create star effect */
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    z-index: -1; /* Change from 0 to -1 to ensure stars are behind everything */
+}
+
+
+/* New styles for shooting stars */
+.shooting-star {
+    position: fixed;
+    width: 65px;
+    height: 2.5px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.5) 30%, 
+        rgba(255, 255, 255, 0.9) 60%,
+        #00FFFF 85%,
+        #fff0a0 100% /* Core at the front */
+    );
+    filter: blur(2px);
+    box-shadow: 
+        0 0 8px #ffd700,
+        0 0 15px #00FFFF,
+        0 0 25px rgba(255, 255, 255, 0.7);
+    z-index: -1;
+    opacity: 0;
+    transform-origin: center;
+}
+
+@keyframes shoot-diagonal {
+    0% {
+        transform: translate(0, 0) rotate(var(--angle));
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--moveX), var(--moveY)) rotate(var(--angle));
+        opacity: 0;
+    }
+}
