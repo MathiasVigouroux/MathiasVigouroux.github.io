@@ -433,6 +433,37 @@ header nav a:hover {
 
 @media (max-width: 1024px) {
     .ufo-contact {
+        position: sticky; /* Change from static to sticky */
+        top: 60px; /* Space for the header */
+        transform: none;
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 20px;
+        z-index: 3; /* Keep UFO above content */
+    }
+
+    .ufo-cabin {
+        top: -30px; /* Adjust for mobile */
+    }
+
+    .ufo-body {
+        height: 150px; /* Slightly reduce height for mobile */
+    }
+
+    .reactor-beam {
+        bottom: -40px; /* Adjust beam position for mobile */
+        height: 60px; /* Shorter beam for mobile */
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto; /* Reduce top margin since UFO is above */
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ufo-contact {
         position: static;
         transform: none;
         width: 90%;
@@ -443,6 +474,29 @@ header nav a:hover {
     .container {
         width: 90%;
         margin: 80px auto; /* Center on mobile */
+    }
+}
+
+
+
+
+/* Add specific styles for very small screens */
+@media (max-width: 480px) {
+    .ufo-contact {
+        width: 95%;
+    }
+
+    .ufo-cabin {
+        width: 180px;
+        height: 60px;
+    }
+
+    .ufo-cabin h1 {
+        font-size: 1rem;
+    }
+
+    .contact-info {
+        font-size: 0.8rem;
     }
 }
 
@@ -459,12 +513,6 @@ header nav a:hover {
     }
 }
 
-@media (max-width: 1024px) {
-    .container {
-        width: 90%;
-        margin: 80px auto;
-    }
-}
 
 /* New styles for dynamic name */
 #dynamic-name::after {
