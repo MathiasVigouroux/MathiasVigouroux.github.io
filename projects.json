@@ -1,19 +1,36 @@
 {
-    "projects": [
+    "scientific_projects": [
         {
             "name": "Rapport Master CNN",
             "url": "projects/2022_VIGOUROUX_M2CNN.pdf",
-            "description": "This is the final report for my Master's degree in CNN."
+            "description": "This is the final report for my Master's degree in CNN.",
+            "date": "2022-06-15"
         },
         {
             "name": "Scanning Organ Detection",
             "url": "projects/Haubert_vigouroux_Raidium_compressed.pdf",
-            "description": "A project on scanning and detecting organs using advanced algorithms."
+            "description": "A project on scanning and detecting organs using advanced algorithms.",
+            "date": "2021-11-10"
         },
         {
             "name": "Rapport Master MVA",
             "url": "projects/VIGOUROUX MATHIAS RAPPORT.pdf",
-            "description": "This is the final report for my Master's degree in MVA."
+            "description": "This is the final report for my Master's degree in MVA.",
+            "date": "2020-09-25"
+        }
+    ],
+    "artistic_projects": [
+        {
+            "name": "Digital Art Collection",
+            "url": "projects/art/digital_collection.pdf",
+            "description": "A collection of digital artworks exploring space themes.",
+            "date": "2023-03-20"
+        },
+        {
+            "name": "Photography Portfolio",
+            "url": "projects/art/photo_portfolio.pdf",
+            "description": "A selection of astronomical photography works.",
+            "date": "2022-08-05"
         }
     ]
 }

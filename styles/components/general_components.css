@@ -1,0 +1,77 @@
+
+/* Buttons*/
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #E8E8FF;
+    background-color: #4B0082; /* Deep indigo */
+    box-shadow: 0 0 15px rgba(75, 0, 130, 0.5);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Add some space between elements */
+}
+
+button:hover {
+    background-color: #6A0DAD; /* Brighter purple */
+}
+
+
+/* New styles for social media links */
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    margin: 0 10px;
+    color: #00cc00; /* Bright green */
+    font-size: 24px;
+}
+
+social-media a:hover {
+    color: #009900; /* Darker green on hover */
+}
+
+
+
+/* New styles for circular image */
+
+img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+
+
+/* New styles for header */
+header {
+    width: 100%;
+    background-color: rgba(11, 11, 31, 0.9); /* Transparent deep space blue */
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #00FFFF;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;  /* Change from sticky to fixed */
+    top: 0;
+    z-index: 1000; /* Highest z-index to stay on top */
+}
+
+header nav a {
+    color: #00FFFF; /* Cyan blue */
+    margin: 0 50px; /* Increased margin for more spacing */
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 15px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+    text-decoration: underline;
+}
+
+

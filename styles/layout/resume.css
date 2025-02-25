@@ -6,20 +6,30 @@
     display: block;
     position: relative; /* For stars positioning */
     overflow-x: hidden; /* Prevent horizontal scroll */
-    padding-top: 60px; /* Space for fixed header */
+    padding-top: 60px; /* Space for header */
+    z-index: 1; /* Ensure proper stacking context */
 }
 
 
 /* Clean up container styles */
 .container {
-    width: 600px;
+    width: 60%;
+    max-width: 800px;
+    margin: 100px auto 20px; /* Increased top margin to accommodate UFO */
     padding: 2rem;
-    background-color: rgba(26, 26, 58, 0.8);
-    border: 1px solid #4B0082;
+    background-color: var(--cosmic-background);
+    border: 1px solid var(--deep-indigo);
     box-shadow: 0 0 20px rgba(75, 0, 130, 0.3);
     position: relative;
-    z-index: 1;
-    margin: 80px 150px 20px 615px; /* top right bottom left - increased left margin significantly */
+    z-index: 1; /* Below UFO */
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin-top: 20px; /* Reset margin as UFO is static on mobile */
+        z-index: 1;
+    }
 }
 
 .resume-header {

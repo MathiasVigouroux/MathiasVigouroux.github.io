@@ -1,8 +1,6 @@
 const popularNames = [
-    "Yuri Gagarin", "Alan Shepard", "Neil Armstrong", "Valentina Tereshkova", "Thomas Pesquet",
-    "Sally Ride", "Buzz Aldrin", "Chris Hadfield", "Kalpana Chawla", "Michael Collins", "John Glenn", 
-    "Sunita Williams", "Peggy Whitson", "Fyodor Yurchikhin", "Koichi Wakata", "Jessica Watkins",
-    "Liu Yang", "Rakesh Sharma", "Mae Jemison", "Yi So-yeon", "Guion Bluford", "Ellen Ochoa", "William Anders"];
+    "Yuri Gagarin", "Alan Shepard", "Neil Armstrong",  "Thomas Pesquet",
+    "Sally Ride", "Buzz Aldrin", "John Glenn"];
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Document is ready!');
@@ -44,9 +42,137 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error fetching projects:', error));
     }
 
+    if (document.getElementById('scientific-carousel')) {
+        fetch('projects.json')
+            .then(response => response.json())
+            .then(data => {
+                loadProjects(data.scientific_projects, 'scientific-carousel');
+                loadProjects(data.artistic_projects, 'artistic-carousel');
+            })
+            .catch(error => console.error('Error fetching projects:', error));
+    }
+
     createStars();
     startShootingStars();
+
+    // Handle main projects page
+    if (document.getElementById('recent-carousel')) {
+        loadRecentProjects();
+    }
+
+    // Handle scientific projects page
+    if (document.getElementById('recent-scientific-carousel')) {
+        loadScientificProjects();
+    }
+
+    // Handle artistic projects page
+    if (document.getElementById('recent-artistic-carousel')) {
+        loadArtisticProjects();
+    }
 });
+
+function loadProjects(projects, carouselId) {
+    const carousel = document.getElementById(carouselId);
+    projects.forEach(project => {
+        const carouselItem = document.createElement('div');
+        carouselItem.className = 'carousel-item';
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = project.url + '#page=1';
+        iframe.width = '100%';
+        iframe.height = '400px';
+        iframe.style.border = 'none';
+        
+        const description = document.createElement('p');
+        description.textContent = project.description;
+        
+        const link = document.createElement('a');
+        link.href = project.url;
+        link.textContent = 'View Full PDF';
+        link.target = '_blank';
+        
+        carouselItem.appendChild(iframe);
+        carouselItem.appendChild(description);
+        carouselItem.appendChild(link);
+        carousel.appendChild(carouselItem);
+    });
+}
+
+function loadRecentProjects() {
+    fetch('projects.json')
+        .then(response => response.json())
+        .then(data => {
+            const allProjects = [
+                ...data.scientific_projects.map(p => ({...p, type: 'scientific'})),
+                ...data.artistic_projects.map(p => ({...p, type: 'artistic'}))
+            ];
+            const recentProjects = allProjects
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            
+            const carousel = document.getElementById('recent-carousel');
+            recentProjects.forEach(project => {
+                createProjectElement(project, carousel);
+            });
+        });
+}
+
+function loadScientificProjects() {
+    fetch('projects.json')
+        .then(response => response.json())
+        .then(data => {
+            // Load recent scientific projects
+            const recentCarousel = document.getElementById('recent-scientific-carousel');
+            data.scientific_projects.slice(0, 3).forEach(project => {
+                createProjectElement(project, recentCarousel);
+            });
+
+            // Load all scientific projects
+            const projectsList = document.getElementById('scientific-projects-list');
+            data.scientific_projects.forEach(project => {
+                createProjectListItem(project, projectsList);
+            });
+        });
+}
+
+function loadArtisticProjects() {
+    fetch('projects.json')
+        .then(response => response.json())
+        .then(data => {
+            // Load recent artistic projects
+            const recentCarousel = document.getElementById('recent-artistic-carousel');
+            data.artistic_projects.slice(0, 3).forEach(project => {
+                createProjectElement(project, recentCarousel);
+            });
+
+            // Load all artistic projects
+            const projectsList = document.getElementById('artistic-projects-list');
+            data.artistic_projects.forEach(project => {
+                createProjectListItem(project, projectsList);
+            });
+        });
+}
+
+function createProjectListItem(project, container) {
+    const item = document.createElement('div');
+    item.className = 'project-item';
+    
+    const title = document.createElement('h3');
+    title.textContent = project.name;
+    
+    const description = document.createElement('p');
+    description.textContent = project.description;
+    
+    const link = document.createElement('a');
+    link.href = project.url;
+    link.textContent = 'View Project';
+    link.target = '_blank';
+    
+    item.appendChild(title);
+    item.appendChild(description);
+    item.appendChild(link);
+    container.appendChild(item);
+}
 
 function sendEmail() {
     window.location.href = "mailto:mathias.vigouroux2@gmail.com?subject=Hello%20Mathias&body=I%20would%20like%20to%20get%20in%20touch%20with%20you.";

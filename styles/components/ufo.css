@@ -3,13 +3,14 @@
 /* UFO Contact Section */
 .ufo-contact {
     position: fixed;
-    left: 50px;
-    top: 50%; /* Adjust position to account for header */
-    transform: translateY(-50%);
-    width: 400px; /* Increased from 300px */
-    height: 220px; /* Increased from 180px */
+    left: 2vw; /* Use viewport width instead of fixed pixels */
+    top: 300px; /* Adjusted to be just below header */
+    width: 25vw; /* Responsive width */
+    max-width: 400px; /* Maximum width */
+    min-width: 280px; /* Minimum width to maintain readability */
+    height: auto; /* Allow height to adjust */
+    z-index: 200; /* Between header (1000) and content (1) */
     animation: hover 4s ease-in-out infinite;
-    z-index: 2; /* Keep UFO above other elements */
 }
 
 /* UFO cabin (porthole) */
@@ -81,7 +82,7 @@
 /* Reactor beam */
 .reactor-beam {
     position: absolute;
-    bottom: -55px; /* Changed from -120px to be closer to the UFO */
+    bottom: -98px; /* Changed from -120px to be closer to the UFO */
     left: 50%;
     transform: translateX(-50%);
     width: 180px; /* Slightly reduced from 200px */
@@ -93,4 +94,15 @@
     );
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
     animation: beam-flicker 2s infinite;
+}
+
+@media (max-width: 1250px) {
+    .ufo-contact {
+        position: static;
+        width: 90%;
+        max-width: 400px;
+        margin: 180px auto 20px; /* Space below header */
+        left: auto;
+        transform: none;
+    }
 }
