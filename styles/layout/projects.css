@@ -37,6 +37,7 @@
     justify-content: space-around;
     margin: 40px 0;
     gap: 20px;
+    padding: 20px;
 }
 
 .project-button {
@@ -47,15 +48,29 @@
     border-radius: 15px;
     transition: transform 0.3s ease;
     max-width: 400px;
+    /* Ensure buttons are visible */
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.project-button h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #fff;
+}
+
+.project-button p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .project-button.scientific {
-    background: linear-gradient(145deg, rgba(0, 50, 100, 0.7), rgba(0, 100, 150, 0.7));
+    background: linear-gradient(145deg, rgba(0, 50, 100, 0.9), rgba(0, 100, 150, 0.9));
     border: 2px solid #00FFFF;
 }
 
 .project-button.artistic {
-    background: linear-gradient(145deg, rgba(100, 0, 100, 0.7), rgba(150, 0, 100, 0.7));
+    background: linear-gradient(145deg, rgba(100, 0, 100, 0.9), rgba(150, 0, 100, 0.9));
     border: 2px solid #FF00FF;
 }
 

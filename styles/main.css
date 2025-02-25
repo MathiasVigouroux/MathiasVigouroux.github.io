@@ -10,3 +10,32 @@
 @import 'layout/index.css';
 @import 'layout/resume.css';
 @import 'layout/projects.css';
+
+/* Loading and error states */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #00FFFF;
+}
+
+.error {
+    text-align: center;
+    padding: 20px;
+    color: #FF4444;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Debug info */
+#debug {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #00FF00;
+    padding: 10px;
+    font-family: monospace;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 9999;
+}

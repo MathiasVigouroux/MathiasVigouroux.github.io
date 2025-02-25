@@ -4,6 +4,8 @@ const popularNames = [
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Document is ready!');
+    console.log('Current page URL:', window.location.href);
+    console.log('Current path:', window.location.pathname);
     updateRandomName();
     setInterval(() => {
         updateRandomName();
@@ -57,16 +59,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle main projects page
     if (document.getElementById('recent-carousel')) {
+        console.log('Found recent-carousel, loading projects...');
         loadRecentProjects();
     }
 
     // Handle scientific projects page
     if (document.getElementById('recent-scientific-carousel')) {
+        console.log('Found scientific carousel, loading projects...');
         loadScientificProjects();
     }
 
     // Handle artistic projects page
     if (document.getElementById('recent-artistic-carousel')) {
+        console.log('Found artistic carousel, loading projects...');
         loadArtisticProjects();
     }
 });
@@ -99,9 +104,21 @@ function loadProjects(projects, carouselId) {
 }
 
 function loadRecentProjects() {
-    fetch('projects.json')
-        .then(response => response.json())
+    // Adjust path for GitHub Pages
+    const jsonPath = window.location.pathname.includes('github.io') ? 
+        '/MathiasVigouroux.github.io/projects.json' : '/projects.json';
+    
+    console.log('Loading projects from:', jsonPath);
+    
+    fetch(jsonPath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Projects data loaded:', data);
             const allProjects = [
                 ...data.scientific_projects.map(p => ({...p, type: 'scientific'})),
                 ...data.artistic_projects.map(p => ({...p, type: 'artistic'}))
@@ -114,6 +131,11 @@ function loadRecentProjects() {
             recentProjects.forEach(project => {
                 createProjectElement(project, carousel);
             });
+        })
+        .catch(error => {
+            console.error('Error loading projects:', error);
+            document.getElementById('recent-carousel').innerHTML = 
+                '<p class="error">Error loading projects. Please try again later.</p>';
         });
 }
 
