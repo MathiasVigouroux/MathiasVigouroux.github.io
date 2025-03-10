@@ -6,8 +6,12 @@
     <title>Artistic Projects - Mathias Vigouroux</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/layout/projects.css">
+    <!-- Load scripts after DOM is fully loaded -->
     <script src="scripts.js" defer></script>
     <script src="caroussels.js" defer></script>
+    
+    <!-- GitHub Pages metadata -->
+    <meta name="description" content="Artistic projects and creative works by Mathias Vigouroux">
 </head>
 <body>
     <header>
@@ -52,10 +56,45 @@
     </div>
     
     <script>
-        // Initialize category navigation on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // This will be called after categories are loaded by loadArtisticProjects
-            setTimeout(setupCategoryNavigation, 1000);
+        // Initialize after all content is loaded, with a slight delay for GitHub Pages
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Directly add click handlers to the navigation links
+                document.querySelectorAll('.art-categories-nav a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get the target section id from the href
+                        const targetId = this.getAttribute('href').substring(1);
+                        console.log('Clicking on link to:', targetId);
+                        
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            console.log('Found target section:', targetSection);
+                            // Calculate scroll position with offset for fixed header
+                            const headerOffset = 100; // Adjust based on your header height
+                            const elementPosition = targetSection.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            // Smooth scroll to the section
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Update active state for navigation
+                            document.querySelectorAll('.art-categories-nav a').forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                        } else {
+                            console.log('Target section not found:', targetId);
+                            console.log('Available sections:', 
+                                Array.from(document.querySelectorAll('section[id]'))
+                                    .map(s => s.id));
+                        }
+                    });
+                });
+            }, 500); // Small delay to ensure categories are loaded
         });
     </script>
 </body>

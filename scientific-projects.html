@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="styles/layout/projects.css">
     <script src="scripts.js" defer></script>
     <script src="caroussels.js" defer></script>
+    
+    <!-- GitHub Pages metadata -->
+    <meta name="description" content="Scientific research and technical projects by Mathias Vigouroux">
 </head>
 <body>
     <header>
@@ -36,5 +39,18 @@
 
         <a href="projects.html" class="back-button">Back to Projects</a>
     </div>
+    
+    <!-- Debug panel for GitHub Pages -->
+    <div id="debug" style="display: none;">
+        <pre></pre>
+    </div>
+    
+    <script>
+        // Enable debug mode with URL parameter ?debug=true
+        if (window.location.search.includes('debug=true')) {
+            document.getElementById('debug').style.display = 'block';
+            console.log('Debug mode enabled');
+        }
+    </script>
 </body>
 </html>

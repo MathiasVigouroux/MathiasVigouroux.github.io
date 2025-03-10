@@ -11,6 +11,9 @@
         document.addEventListener("DOMContentLoaded", function() {
         });
     </script>
+    <!-- GitHub Pages specific metadata -->
+    <meta name="description" content="Personal website of Mathias Vigouroux - Researcher in Cognitive Science & AI and actor">
+    <link rel="canonical" href="https://mathiasvigouroux.github.io/">
 </head>
 <body>
     <header>
@@ -57,5 +60,22 @@
             <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
         </div>
     </div>
+    <!-- Replace the CORS alert with a GitHub Pages specific message -->
+    <script>
+      // Display a helpful message if we have loading issues
+      window.addEventListener('error', function(e) {
+        if (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK' || 
+            e.message && e.message.includes('fetch')) {
+            
+            // Only show the error if it's a resource loading issue
+            console.error('Resource loading error:', e);
+            
+            // Check if we're on GitHub Pages
+            if (window.location.href.includes('github.io')) {
+                console.log('Running on GitHub Pages - check for path issues');
+            }
+        }
+      }, true); // Use capturing to catch all resource errors
+    </script>
 </body>
 </html>

@@ -46,11 +46,23 @@ function createProjectElement(project, container) {
     container.appendChild(carouselItem);
 }
 
-function loadRecentProjects() {
-    const jsonPath = window.location.pathname.includes('github.io') ? 
-        '/MathiasVigouroux.github.io/projects.json' : '/projects.json';
+function getProjectsJsonUrl() {
+    const currentUrl = window.location.href;
     
-    fetch(jsonPath)
+    // Get the base URL for GitHub Pages or other environments
+    const baseUrl = currentUrl.includes('github.io') 
+        ? '/MathiasVigouroux.github.io' 
+        : '';
+    
+    // Return the complete path to projects.json
+    return `${baseUrl}/projects.json`;
+}
+
+function loadRecentProjects() {
+    const jsonUrl = getProjectsJsonUrl();
+    console.log('Loading projects from:', jsonUrl);
+    
+    fetch(jsonUrl)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
@@ -82,10 +94,10 @@ function loadRecentProjects() {
 }
 
 function loadScientificProjects() {
-    const jsonPath = window.location.pathname.includes('github.io') ? 
-        '/MathiasVigouroux.github.io/projects.json' : '/projects.json';
+    const jsonUrl = getProjectsJsonUrl();
+    console.log('Loading scientific projects from:', jsonUrl);
     
-    fetch(jsonPath)
+    fetch(jsonUrl)
         .then(response => response.json())
         .then(data => {
             const recentCarousel = document.getElementById('recent-scientific-carousel');
@@ -108,10 +120,10 @@ function loadScientificProjects() {
 }
 
 function loadArtisticProjects() {
-    const jsonPath = window.location.pathname.includes('github.io') ? 
-        '/MathiasVigouroux.github.io/projects.json' : '/projects.json';
+    const jsonUrl = getProjectsJsonUrl();
+    console.log('Loading artistic projects from:', jsonUrl);
     
-    fetch(jsonPath)
+    fetch(jsonUrl)
         .then(response => response.json())
         .then(data => {
             const recentCarousel = document.getElementById('recent-artistic-carousel');
@@ -167,25 +179,32 @@ function loadArtisticProjects() {
             const categoriesContainer = document.getElementById('artistic-categories');
             if (categoriesContainer) {
                 categoriesContainer.innerHTML = '';
+                console.log('Creating category sections');
                 
                 // Process each category
                 Object.keys(artisticCategories).forEach(categoryKey => {
                     // Skip empty categories
                     if (!artisticCategories[categoryKey] || artisticCategories[categoryKey].length === 0) return;
                     
-                    const categoryId = categoryKey.replace('artistic_', '');
-                    const displayInfo = categoryDisplayNames[categoryKey] || {
-                        name: categoryId.replace('_', ' '),
-                        id: categoryId
-                    };
+                    // Map category keys to section IDs
+                    let sectionId;
+                    if (categoryKey === 'artistic_projects') {
+                        sectionId = 'other';
+                    } else if (categoryKey === 'artistic_classes') {
+                        sectionId = 'classes';
+                    } else {
+                        sectionId = categoryKey.replace('artistic_', '');
+                    }
+                    
+                    console.log(`Creating section for ${categoryKey} with id ${sectionId}`);
                     
                     // Create a section for this category
                     const section = document.createElement('section');
                     section.className = 'category-section';
-                    section.id = displayInfo.id;  // Set the ID for scroll target
+                    section.id = sectionId;  // Set the ID for scroll target
                     
                     const heading = document.createElement('h2');
-                    heading.textContent = displayInfo.name;
+                    heading.textContent = categoryDisplayNames[categoryKey].name;
                     section.appendChild(heading);
                     
                     const projectsList = document.createElement('div');
@@ -200,8 +219,12 @@ function loadArtisticProjects() {
                     categoriesContainer.appendChild(section);
                 });
                 
-                // Setup navigation click handlers
-                setupCategoryNavigation();
+                // Debug output of all section IDs
+                const allSections = categoriesContainer.querySelectorAll('section');
+                console.log('Created sections with IDs:', Array.from(allSections).map(s => s.id));
+                
+                // Don't call setupCategoryNavigation here anymore
+                // setupCategoryNavigation();
             }
         })
         .catch(error => {
@@ -213,7 +236,7 @@ function loadArtisticProjects() {
         });
 }
 
-// Add this new function to handle smooth scrolling
+// Keep the function but we won't use it directly from the carousel.js
 function setupCategoryNavigation() {
     const navLinks = document.querySelectorAll('.art-categories-nav a');
     
