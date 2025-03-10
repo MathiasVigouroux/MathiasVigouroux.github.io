@@ -23,18 +23,40 @@
         <section class="recent-section">
             <h2>Recent Work</h2>
             <div id="recent-artistic-carousel" class="carousel">
-                <!-- Recent artistic projects will be inserted here -->
+                <div class="loading">Loading recent artistic projects...</div>
             </div>
         </section>
 
-        <section class="all-projects">
-            <h2>All Artistic Projects</h2>
-            <div id="artistic-projects-list" class="projects-list">
-                <!-- All artistic projects will be listed here -->
-            </div>
-        </section>
+        <nav class="art-categories-nav">
+            <ul>
+                <li><a href="#theater" class="category-link">Theater</a></li>
+                <li><a href="#screen" class="category-link">Screen</a></li>
+                <li><a href="#dance" class="category-link">Dance</a></li>
+                <li><a href="#choir" class="category-link">Choir</a></li>
+                <li><a href="#classes" class="category-link">Classes</a></li>
+                <li><a href="#other" class="category-link">Other Projects</a></li>
+            </ul>
+        </nav>
+
+        <!-- Categories will be inserted here -->
+        <div id="artistic-categories">
+            <div class="loading">Loading artistic categories...</div>
+        </div>
 
         <a href="projects.html" class="back-button">Back to Projects</a>
     </div>
+    
+    <!-- Debug info -->
+    <div id="debug" style="display: none;">
+        <pre></pre>
+    </div>
+    
+    <script>
+        // Initialize category navigation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be called after categories are loaded by loadArtisticProjects
+            setTimeout(setupCategoryNavigation, 1000);
+        });
+    </script>
 </body>
 </html>

@@ -18,13 +18,174 @@
             "description": "This is the final report for my Master's degree in MVA.",
             "date": "2020-09-25"
         }
+        ,
+        {
+            "name": "NLP Few-Shot Learning",
+            "url": "projects/nlp_few_shot.pdf",
+            "description": "Pattern-Exploitation Training for low resource languages (Hungarian). Fine-tuning of existing algorithm, creation of new tasks.",
+            "date": "2023-01-15"
+        },
+        {
+            "name": "NLP and RLHF",
+            "url": "projects/nlp_rlhf.pdf",
+            "description": "Agent creation for machines. Comparing text-davinci-3 to ChatGPT.",
+            "date": "2023-05-20"
+        },
+        {
+            "name": "Interpretability of Transformers",
+            "url": "projects/interpretability.pdf",
+            "description": "Discovering Latent Knowledge in Language Models Without Supervision.",
+            "date": "2022-11-10"
+        },
+        {
+            "name": "Sentiment Analysis",
+            "url": "projects/sentiment_analysis.pdf",
+            "description": "Political polarization in the USA through web-scrapping and analysis.",
+            "date": "2022-08-25"
+        },
+        {
+            "name": "Deep RL Teacher Algorithms",
+            "url": "projects/deep_rl.pdf",
+            "description": "Curriculum learning of Deep RL in continuously parameterized environments.",
+            "date": "2022-03-12"
+        },
+        {
+            "name": "Topological Data Analysis",
+            "url": "projects/topological.pdf",
+            "description": "Principal Geodesic Analysis of Merge Trees.",
+            "date": "2021-09-18"
+        },
+        {
+            "name": "Statistical Learning for Extreme Value",
+            "url": "projects/statistical_learning.pdf",
+            "description": "Regular Variation in Hilbert Spaces and PCA for Functional Extremes.",
+            "date": "2021-06-30"
+        },
+        {
+            "name": "Optimal Transport",
+            "url": "projects/optimal_transport.pdf",
+            "description": "Approximate Bayesian Computation with the Sliced-Wasserstein Distance.",
+            "date": "2021-03-15"
+        },
+        {
+            "name": "Radiological Anatomy Segmentation",
+            "url": "projects/radiological.pdf",
+            "description": "Learning radiological and oncological anatomy with few-shots learning.",
+            "date": "2020-12-01"
+        },
+        {
+            "name": "EEG Sleep Stage Prediction",
+            "url": "projects/eeg_sleep.pdf",
+            "description": "Kaggle competition in partnership with Dreem to predict sleep stage from EEG data.",
+            "date": "2020-09-05"
+        },
+        {
+            "name": "Human Metacognition",
+            "url": "projects/metacognition.pdf",
+            "description": "Second-order models are necessary to correctly model the human sense of confidence.",
+            "date": "2020-07-22"
+        },
+        {
+            "name": "Brain-Machine Interface",
+            "url": "projects/bmi.pdf",
+            "description": "To what extent tactile feedback augment prosthetic arms performance.",
+            "date": "2020-04-10"
+        }
+        ],
+"artistic_classes": [
+        {
+            "name": "English Acting Class",
+            "url": "projects/art/acting_class.pdf",
+            "description": "Classes by Julian Eggerickx at Cours Florent in 2019-2020. Stopped due to COVID.",
+            "date": "2019-09-01"
+        },
+        {
+            "name": "Clown Classes",
+            "url": "projects/art/clown_classes.pdf",
+            "description": "Classes by Julian Eggerickx at Cours Florent in 2019-2020. Stopped due to COVID.",
+            "date": "2019-09-01"
+        }
+    ],
+    "artistic_theater": [
+        {
+            "name": "Oswald et Zénaïde (Modern)",
+            "url": "projects/art/oswald_zenaide.pdf",
+            "description": "Jean Tardieu. Anne-Marie Paillet, ENS, December 2024 - part: Oswald",
+            "date": "2024-12-01"
+        },
+        {
+            "name": "La Seconde Surprise de l'Amour (Classic)",
+            "url": "projects/art/seconde_surprise.pdf",
+            "description": "Marivaux. Anne-Marie Paillet, ENS, March 30th & 31st 2025 - part: Lubin",
+            "date": "2025-03-30"
+        },
+        {
+            "name": "Faim de Mots (Modern)",
+            "url": "projects/art/faim_de_mots.pdf",
+            "description": "Vincent Cipriani. Théâtre Nicole Loraux, May 1-4 2025 - part: Aba",
+            "date": "2025-05-01"
+        },
+        {
+            "name": "Le Bourgeois Gentilhomme (Classic)",
+            "url": "projects/art/bourgeois_gentilhomme.pdf",
+            "description": "Molière. Anne-Marie Paillet, June/July 2025 - parts: Maitre d'armes & Dorante",
+            "date": "2025-06-01"
+        }
+    ],
+    "artistic_screen": [
+        {
+            "name": "Par-dessus Bord (TV Film)",
+            "url": "projects/art/par_dessus_bord.pdf",
+            "description": "Alexandre Buyukodabas, Luzerond Film, post-production, part: Tugba's Friend",
+            "date": "2025-01-01"
+        },
+        {
+            "name": "Réunion de Super Héros (Series)",
+            "url": "projects/art/reunion_super_heros.pdf",
+            "description": "Arnault Verret, Calebasse Production, NFF, part: Felix (main character)",
+            "date": "2025-01-01"
+        },
+        {
+            "name": "La Génance (Short Film)",
+            "url": "projects/art/la_genance.pdf",
+            "description": "Clément Buisson, Nikon Film Festival 2025, part: Edgar",
+            "date": "2025-01-01"
+        },
+        {
+            "name": "Coté Cam (Short Film)",
+            "url": "projects/art/cote_cam.pdf",
+            "description": "Julien Folbaum, INAction, 2024, part: The Screenwriter (main character and screenwriter)",
+            "date": "2024-01-01"
+        }
+    ],
+    "artistic_dance": [
+        {
+            "name": "Choreographic Workshop & Jazz Improvisation",
+            "url": "projects/art/choreographic_workshop.pdf",
+            "description": "Diane-Iris Ricaud, Constellation, Théâtre du Gymnase Paris, January 2025",
+            "date": "2025-01-01"
+        }
+    ],
+    "artistic_choir": [
+        {
+            "name": "Chœur aux Ernests",
+            "url": "projects/art/choeur_ernests.pdf",
+            "description": "ENS",
+            "date": "2024-01-01"
+        },
+        {
+            "name": "Pauvre Sens Pauvre Mémoire",
+            "url": "projects/art/pauvre_sens.pdf",
+            "description": "Musical creation: Siham Maidon. January-February 2025, Théâtre Nicole Loraux",
+            "date": "2025-01-01"
+        }
     ],
     "artistic_projects": [
         {
-            "name": "Digital Art Collection",
-            "url": "projects/art/digital_collection.pdf",
-            "description": "A collection of digital artworks exploring space themes.",
-            "date": "2023-03-20"
+            "name": "Playwirters' Workshop",
+            "url": "projects/art/ecriture_de_théatre.pdf",
+            "description": "A collectif workshop for dramatic writing.",
+            "date": "2024"
         },
         {
             "name": "Photography Portfolio",

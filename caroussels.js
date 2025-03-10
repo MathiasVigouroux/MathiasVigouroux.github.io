@@ -115,22 +115,134 @@ function loadArtisticProjects() {
         .then(response => response.json())
         .then(data => {
             const recentCarousel = document.getElementById('recent-artistic-carousel');
-            const projectsList = document.getElementById('artistic-projects-list');
             
+            // Get all artistic subcategories
+            const allArtisticProjects = [];
+            const artisticCategories = {};
+            
+            // Map category keys to display names and IDs
+            const categoryDisplayNames = {
+                'artistic_theater': { name: 'Theater', id: 'theater' },
+                'artistic_screen': { name: 'Screen', id: 'screen' },
+                'artistic_dance': { name: 'Dance', id: 'dance' },
+                'artistic_choir': { name: 'Choir', id: 'choir' },
+                'artistic_classes': { name: 'Classes', id: 'classes' },
+                'artistic_projects': { name: 'Other Projects', id: 'other' }
+            };
+            
+            // Collect all artistic subcategories
+            Object.keys(data).forEach(key => {
+                if (key.startsWith('artistic_')) {
+                    // Store the category for later use
+                    artisticCategories[key] = data[key];
+                    
+                    // Add all projects from this category to the combined list
+                    if (data[key] && Array.isArray(data[key])) {
+                        data[key].forEach(project => {
+                            allArtisticProjects.push({
+                                ...project,
+                                category: key
+                            });
+                        });
+                    }
+                }
+            });
+            
+            // Handle the recent works carousel
             if (recentCarousel) {
                 recentCarousel.innerHTML = '';
-                data.artistic_projects
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .slice(0, 3)
-                    .forEach(project => createProjectElement(project, recentCarousel));
+                
+                if (allArtisticProjects.length === 0) {
+                    recentCarousel.innerHTML = '<p>No artistic projects found.</p>';
+                } else {
+                    // Sort all artistic projects by date and take the 3 most recent
+                    allArtisticProjects
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 3)
+                        .forEach(project => createProjectElement(project, recentCarousel));
+                }
             }
             
-            if (projectsList) {
-                projectsList.innerHTML = '';
-                data.artistic_projects.forEach(project => createProjectListItem(project, projectsList));
+            // Create sections for each artistic subcategory
+            const categoriesContainer = document.getElementById('artistic-categories');
+            if (categoriesContainer) {
+                categoriesContainer.innerHTML = '';
+                
+                // Process each category
+                Object.keys(artisticCategories).forEach(categoryKey => {
+                    // Skip empty categories
+                    if (!artisticCategories[categoryKey] || artisticCategories[categoryKey].length === 0) return;
+                    
+                    const categoryId = categoryKey.replace('artistic_', '');
+                    const displayInfo = categoryDisplayNames[categoryKey] || {
+                        name: categoryId.replace('_', ' '),
+                        id: categoryId
+                    };
+                    
+                    // Create a section for this category
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
+                    section.id = displayInfo.id;  // Set the ID for scroll target
+                    
+                    const heading = document.createElement('h2');
+                    heading.textContent = displayInfo.name;
+                    section.appendChild(heading);
+                    
+                    const projectsList = document.createElement('div');
+                    projectsList.className = 'projects-list';
+                    
+                    // Add all projects for this category
+                    artisticCategories[categoryKey].forEach(project => {
+                        createProjectListItem(project, projectsList);
+                    });
+                    
+                    section.appendChild(projectsList);
+                    categoriesContainer.appendChild(section);
+                });
+                
+                // Setup navigation click handlers
+                setupCategoryNavigation();
             }
         })
-        .catch(error => console.error('Error loading artistic projects:', error));
+        .catch(error => {
+            console.error('Error loading artistic projects:', error);
+            const recentCarousel = document.getElementById('recent-artistic-carousel');
+            if (recentCarousel) {
+                recentCarousel.innerHTML = '<p class="error">Error loading projects. Please try again later.</p>';
+            }
+        });
+}
+
+// Add this new function to handle smooth scrolling
+function setupCategoryNavigation() {
+    const navLinks = document.querySelectorAll('.art-categories-nav a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the target section id from the href
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                // Calculate scroll position with offset for fixed header
+                const headerOffset = 80; // Adjust based on your header height
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                // Smooth scroll to the section
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update active state for navigation
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
 }
 
 function createProjectListItem(project, container) {
