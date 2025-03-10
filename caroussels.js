@@ -47,15 +47,14 @@ function createProjectElement(project, container) {
 }
 
 function getProjectsJsonUrl() {
-    const currentUrl = window.location.href;
-    
-    // Get the base URL for GitHub Pages or other environments
-    const baseUrl = currentUrl.includes('github.io') 
-        ? '/MathiasVigouroux.github.io' 
-        : '';
-    
-    // Return the complete path to projects.json
-    return `${baseUrl}/projects.json`;
+    // Simplify path resolution for GitHub Pages
+    if (window.location.hostname.includes('github.io')) {
+        // For GitHub Pages, use an absolute path
+        return '/projects.json';
+    } else {
+        // For local development
+        return 'projects.json';
+    }
 }
 
 function loadRecentProjects() {
@@ -64,25 +63,64 @@ function loadRecentProjects() {
     
     fetch(jsonUrl)
         .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) {
+                console.error(`Failed to load projects.json: ${response.status} ${response.statusText}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
+            console.log('Projects data loaded successfully:', Object.keys(data));
             const carousel = document.getElementById('recent-carousel');
-            if (!carousel) return;
+            if (!carousel) {
+                console.warn('Carousel element not found: recent-carousel');
+                return;
+            }
             
-            carousel.innerHTML = ''; // Clear loading message
+            carousel.innerHTML = '';
             
-            const allProjects = [
-                ...data.scientific_projects.map(p => ({...p, type: 'scientific'})),
-                ...data.artistic_projects.map(p => ({...p, type: 'artistic'}))
-            ];
+            // Handle different data structures
+            let allProjects = [];
             
+            // Check if we have scientific_projects or the older 'projects' format
+            if (data.scientific_projects) {
+                allProjects = [
+                    ...data.scientific_projects.map(p => ({...p, type: 'scientific'}))
+                ];
+                
+                // Add artistic projects from all artistic categories
+                Object.keys(data).forEach(key => {
+                    if (key.startsWith('artistic_') && Array.isArray(data[key])) {
+                        allProjects = [
+                            ...allProjects,
+                            ...data[key].map(p => ({...p, type: key}))
+                        ];
+                    }
+                });
+            } else if (data.projects && Array.isArray(data.projects)) {
+                // Legacy format
+                allProjects = data.projects;
+            }
+            
+            console.log(`Found ${allProjects.length} total projects`);
+            
+            if (allProjects.length === 0) {
+                carousel.innerHTML = '<p>No projects found. Please check your projects.json file.</p>';
+                return;
+            }
+            
+            // Sort by date if available, otherwise just use the first 3
             const recentProjects = allProjects
+                .filter(p => p.date) // Only include projects with dates
                 .sort((a, b) => new Date(b.date) - new Date(a.date))
                 .slice(0, 3);
-            
-            recentProjects.forEach(project => createProjectElement(project, carousel));
+                
+            if (recentProjects.length === 0) {
+                // If no projects have dates, just use the first 3
+                allProjects.slice(0, 3).forEach(project => createProjectElement(project, carousel));
+            } else {
+                recentProjects.forEach(project => createProjectElement(project, carousel));
+            }
         })
         .catch(error => {
             console.error('Error loading projects:', error);

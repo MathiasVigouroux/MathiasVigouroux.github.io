@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="styles/layout/projects.css">
     <script src="scripts.js" defer></script>
     <script src="caroussels.js" defer></script>
+    
+    <!-- Add this script for debugging -->
+    <script>
+        console.log('Projects page loading');
+        window.addEventListener('DOMContentLoaded', () => console.log('DOM content loaded'));
+        window.addEventListener('load', () => console.log('Window loaded'));
+    </script>
 </head>
 <body>
     <header>
@@ -45,9 +52,45 @@
         </div>
     </div>
 
-    <!-- Add debug info -->
-    <div id="debug" style="display: none;">
-        <pre></pre>
+    <!-- Add debug controls -->
+    <div id="debug" style="display: none; position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; color: white;">
+        <button onclick="toggleDebug()">Show/Hide Debug</button>
+        <div id="debug-info" style="display: none; margin-top: 10px; font-family: monospace; max-height: 200px; overflow: auto;">
+            <p>URL: <span id="debug-url"></span></p>
+            <p>JSON Path: <span id="debug-json-path"></span></p>
+            <p>Fetch Result: <span id="debug-fetch"></span></p>
+        </div>
     </div>
+    
+    <script>
+        // Show debug panel if in development or with URL parameter
+        if (window.location.hostname === 'localhost' || 
+            window.location.search.includes('debug=true')) {
+            document.getElementById('debug').style.display = 'block';
+            document.getElementById('debug-url').textContent = window.location.href;
+            document.getElementById('debug-json-path').textContent = getProjectsJsonUrl();
+        }
+        
+        function toggleDebug() {
+            const debugInfo = document.getElementById('debug-info');
+            debugInfo.style.display = debugInfo.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Test fetch of projects.json
+        fetch(getProjectsJsonUrl())
+            .then(response => {
+                document.getElementById('debug-fetch').textContent = 
+                    `Status: ${response.status} ${response.statusText}`;
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('debug-fetch').textContent += 
+                    ` | Data: ${Object.keys(data).join(', ')}`;
+            })
+            .catch(err => {
+                document.getElementById('debug-fetch').textContent += 
+                    ` | Error: ${err.message}`;
+            });
+    </script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+# Disable Jekyll processing while still enabling GitHub Pages
+exclude:
+  - .nojekyll
+  - README.md
+  - LICENSE
+
+# Ensure all files are served properly
+include:
+  - "*.json"
+  - "*.js"
+  - "*.css"
+  - "projects.json"
+
+# Basic site settings
+title: "Mathias Vigouroux"
+description: "Personal website of Mathias Vigouroux - Researcher in Cognitive Science & AI"
