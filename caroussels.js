@@ -79,28 +79,26 @@ function loadRecentProjects() {
             
             carousel.innerHTML = '';
             
-            // Handle different data structures
+            // Handle new subcategory data structure
             let allProjects = [];
             
-            // Check if we have scientific_projects or the older 'projects' format
-            if (data.scientific_projects) {
-                allProjects = [
-                    ...data.scientific_projects.map(p => ({...p, type: 'scientific'}))
-                ];
+            // Collect all scientific projects from subcategories
+            Object.keys(data).forEach(key => {
+                if (key.startsWith('scientific_') && Array.isArray(data[key])) {
+                    allProjects = [
+                        ...allProjects,
+                        ...data[key].map(p => ({...p, type: key}))
+                    ];
+                }
                 
-                // Add artistic projects from all artistic categories
-                Object.keys(data).forEach(key => {
-                    if (key.startsWith('artistic_') && Array.isArray(data[key])) {
-                        allProjects = [
-                            ...allProjects,
-                            ...data[key].map(p => ({...p, type: key}))
-                        ];
-                    }
-                });
-            } else if (data.projects && Array.isArray(data.projects)) {
-                // Legacy format
-                allProjects = data.projects;
-            }
+                // Also collect artistic projects from subcategories
+                if (key.startsWith('artistic_') && Array.isArray(data[key])) {
+                    allProjects = [
+                        ...allProjects,
+                        ...data[key].map(p => ({...p, type: key}))
+                    ];
+                }
+            });
             
             console.log(`Found ${allProjects.length} total projects`);
             

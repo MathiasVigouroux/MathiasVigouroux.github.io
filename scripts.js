@@ -74,9 +74,53 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Found artistic carousel, loading projects...');
         loadArtisticProjects();
     }
+    
+    console.log('DOM loaded in scripts.js');
+    
+    // Initialize page-specific functionality
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (currentPage === '' || currentPage === 'index.html') {
+        console.log('Home page detected');
+        // Home page specific code
+    } else if (currentPage === 'projects.html') {
+        console.log('Projects page detected');
+        // Ensure projects are loaded
+        if (typeof loadRecentProjects === 'function') {
+            console.log('Loading recent projects from scripts.js');
+            loadRecentProjects();
+        } else {
+            console.error('loadRecentProjects function not available yet');
+            // Try again after a slight delay to ensure scripts are loaded
+            setTimeout(() => {
+                if (typeof loadRecentProjects === 'function') {
+                    loadRecentProjects();
+                }
+            }, 500);
+        }
+    } else if (currentPage === 'scientific-projects.html') {
+        console.log('Scientific projects page detected');
+        if (typeof loadScientificProjects === 'function') {
+            loadScientificProjects();
+        }
+    } else if (currentPage === 'artistic-projects.html') {
+        console.log('Artistic projects page detected');
+        if (typeof loadArtisticProjects === 'function') {
+            loadArtisticProjects();
+        }
+    }
 });
 
-
+// Add window.onload as a backup
+window.onload = function() {
+    console.log('Window loaded in scripts.js');
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (currentPage === 'projects.html' && typeof loadRecentProjects === 'function') {
+        console.log('Window load: Loading recent projects');
+        loadRecentProjects();
+    }
+};
 
 function sendEmail() {
     window.location.href = "mailto:mathias.vigouroux2@gmail.com?subject=Hello%20Mathias&body=I%20would%20like%20to%20get%20in%20touch%20with%20you.";
