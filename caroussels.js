@@ -139,22 +139,111 @@ function loadScientificProjects() {
         .then(response => response.json())
         .then(data => {
             const recentCarousel = document.getElementById('recent-scientific-carousel');
-            const projectsList = document.getElementById('scientific-projects-list');
+            const categoriesContainer = document.getElementById('scientific-categories');
             
+            // Get all scientific subcategories
+            const allScientificProjects = [];
+            const scientificCategories = {};
+            
+            // Map category keys to display names and IDs
+            const categoryDisplayNames = {
+                'scientific_nlp': { name: 'Natural Language Processing & AI', id: 'nlp' },
+                'scientific_rl': { name: 'Reinforcement Learning', id: 'rl' },
+                'scientific_math': { name: 'Mathematics', id: 'math' },
+                'scientific_med': { name: 'Medical Applications', id: 'med' },
+                'scientific_cog': { name: 'Cognitive Science', id: 'cog' },
+                'scientific_thesis': { name: 'Thesis & Reports', id: 'thesis' }
+            };
+            
+            // Collect all scientific subcategories
+            Object.keys(data).forEach(key => {
+                if (key.startsWith('scientific_')) {
+                    // Store the category for later use
+                    scientificCategories[key] = data[key];
+                    
+                    // Add all projects from this category to the combined list
+                    if (data[key] && Array.isArray(data[key])) {
+                        data[key].forEach(project => {
+                            allScientificProjects.push({
+                                ...project,
+                                category: key
+                            });
+                        });
+                    }
+                }
+            });
+            
+            // Handle the recent works carousel
             if (recentCarousel) {
                 recentCarousel.innerHTML = '';
-                data.scientific_projects
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .slice(0, 3)
-                    .forEach(project => createProjectElement(project, recentCarousel));
+                
+                if (allScientificProjects.length === 0) {
+                    recentCarousel.innerHTML = '<p>No scientific projects found.</p>';
+                } else {
+                    // Sort all scientific projects by date and take the 3 most recent
+                    allScientificProjects
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 3)
+                        .forEach(project => createProjectElement(project, recentCarousel));
+                }
             }
             
-            if (projectsList) {
-                projectsList.innerHTML = '';
-                data.scientific_projects.forEach(project => createProjectListItem(project, projectsList));
+            // Create sections for each scientific subcategory
+            if (categoriesContainer) {
+                categoriesContainer.innerHTML = '';
+                console.log('Creating scientific category sections');
+                
+                // Process each category
+                Object.keys(scientificCategories).forEach(categoryKey => {
+                    // Skip empty categories
+                    if (!scientificCategories[categoryKey] || scientificCategories[categoryKey].length === 0) return;
+                    
+                    // Get the ID from the mapping
+                    const sectionId = categoryDisplayNames[categoryKey] ? 
+                        categoryDisplayNames[categoryKey].id : 
+                        categoryKey.replace('scientific_', '');
+                    
+                    console.log(`Creating section for ${categoryKey} with id ${sectionId}`);
+                    
+                    // Create a section for this category
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
+                    section.id = sectionId;  // Set the ID for scroll target
+                    
+                    const heading = document.createElement('h2');
+                    heading.textContent = categoryDisplayNames[categoryKey] ? 
+                        categoryDisplayNames[categoryKey].name : 
+                        categoryKey.replace('scientific_', '').replace('_', ' ').toUpperCase();
+                    section.appendChild(heading);
+                    
+                    const projectsList = document.createElement('div');
+                    projectsList.className = 'projects-list';
+                    
+                    // Add all projects for this category
+                    scientificCategories[categoryKey].forEach(project => {
+                        createProjectListItem(project, projectsList);
+                    });
+                    
+                    section.appendChild(projectsList);
+                    categoriesContainer.appendChild(section);
+                });
+                
+                // Debug output of all section IDs
+                const allSections = categoriesContainer.querySelectorAll('section');
+                console.log('Created scientific sections with IDs:', Array.from(allSections).map(s => s.id));
             }
         })
-        .catch(error => console.error('Error loading scientific projects:', error));
+        .catch(error => {
+            console.error('Error loading scientific projects:', error);
+            const recentCarousel = document.getElementById('recent-scientific-carousel');
+            if (recentCarousel) {
+                recentCarousel.innerHTML = '<p class="error">Error loading projects. Please try again later.</p>';
+            }
+            const categoriesContainer = document.getElementById('scientific-categories');
+            if (categoriesContainer) {
+                categoriesContainer.innerHTML = '<p class="error">Error loading scientific categories. Please try again later.</p>';
+            }
+        });
 }
 
 function loadArtisticProjects() {

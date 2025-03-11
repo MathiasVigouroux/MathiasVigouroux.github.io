@@ -1,24 +1,5 @@
 {
-    "scientific_projects": [
-        {
-            "name": "Rapport Master CNN",
-            "url": "projects/2022_VIGOUROUX_M2CNN.pdf",
-            "description": "This is the final report for my Master's degree in CNN.",
-            "date": "2022-06-15"
-        },
-        {
-            "name": "Scanning Organ Detection",
-            "url": "projects/Haubert_vigouroux_Raidium_compressed.pdf",
-            "description": "A project on scanning and detecting organs using advanced algorithms.",
-            "date": "2021-11-10"
-        },
-        {
-            "name": "Rapport Master MVA",
-            "url": "projects/VIGOUROUX MATHIAS RAPPORT.pdf",
-            "description": "This is the final report for my Master's degree in MVA.",
-            "date": "2020-09-25"
-        }
-        ,
+    "scientific_nlp": [
         {
             "name": "NLP Few-Shot Learning",
             "url": "projects/nlp_few_shot.pdf",
@@ -42,13 +23,17 @@
             "url": "projects/sentiment_analysis.pdf",
             "description": "Political polarization in the USA through web-scrapping and analysis.",
             "date": "2022-08-25"
-        },
+        }
+    ],
+    "scientific_rl": [
         {
             "name": "Deep RL Teacher Algorithms",
             "url": "projects/deep_rl.pdf",
             "description": "Curriculum learning of Deep RL in continuously parameterized environments.",
             "date": "2022-03-12"
-        },
+        }
+    ],
+    "scientific_math": [
         {
             "name": "Topological Data Analysis",
             "url": "projects/topological.pdf",
@@ -66,7 +51,9 @@
             "url": "projects/optimal_transport.pdf",
             "description": "Approximate Bayesian Computation with the Sliced-Wasserstein Distance.",
             "date": "2021-03-15"
-        },
+        }
+    ],
+    "scientific_med": [
         {
             "name": "Radiological Anatomy Segmentation",
             "url": "projects/radiological.pdf",
@@ -80,6 +67,14 @@
             "date": "2020-09-05"
         },
         {
+            "name": "Scanning Organ Detection",
+            "url": "projects/Haubert_vigouroux_Raidium_compressed.pdf",
+            "description": "A project on scanning and detecting organs using advanced algorithms.",
+            "date": "2021-11-10"
+        }
+    ],
+    "scientific_cog": [
+        {
             "name": "Human Metacognition",
             "url": "projects/metacognition.pdf",
             "description": "Second-order models are necessary to correctly model the human sense of confidence.",
@@ -91,8 +86,22 @@
             "description": "To what extent tactile feedback augment prosthetic arms performance.",
             "date": "2020-04-10"
         }
-        ],
-"artistic_classes": [
+    ],
+    "scientific_thesis": [
+        {
+            "name": "Rapport Master CNN",
+            "url": "projects/2022_VIGOUROUX_M2CNN.pdf",
+            "description": "This is the final report for my Master's degree in CNN.",
+            "date": "2022-06-15"
+        },
+        {
+            "name": "Rapport Master MVA",
+            "url": "projects/VIGOUROUX MATHIAS RAPPORT.pdf",
+            "description": "This is the final report for my Master's degree in MVA.",
+            "date": "2020-09-25"
+        }
+    ],
+    "artistic_classes": [
         {
             "name": "English Acting Class",
             "url": "projects/art/acting_class.pdf",
@@ -188,9 +197,9 @@
             "date": "2024"
         },
         {
-            "name": "Photography Portfolio",
+            "name": "Nouvelle Vague and Attention",
             "url": "projects/art/photo_portfolio.pdf",
-            "description": "A selection of astronomical photography works.",
+            "description": "I tried to understand the links between psychological research on attention and the Nouvelle Vague, the French CInema of the 1950's.",
             "date": "2022-08-05"
         }
     ]

@@ -27,15 +27,25 @@
             <h2>Recent Work</h2>
             <div id="recent-scientific-carousel" class="carousel">
                 <!-- Recent scientific projects will be inserted here -->
+                <div class="loading">Loading recent scientific projects...</div>
             </div>
         </section>
 
-        <section class="all-projects">
-            <h2>All Scientific Projects</h2>
-            <div id="scientific-projects-list" class="projects-list">
-                <!-- All scientific projects will be listed here -->
-            </div>
-        </section>
+        <nav class="sci-categories-nav art-categories-nav">
+            <ul>
+                <li><a href="#nlp" class="category-link">NLP & AI</a></li>
+                <li><a href="#rl" class="category-link">Reinforcement Learning</a></li>
+                <li><a href="#math" class="category-link">Mathematics</a></li>
+                <li><a href="#med" class="category-link">Medical</a></li>
+                <li><a href="#cog" class="category-link">Cognitive Science</a></li>
+                <li><a href="#thesis" class="category-link">Thesis</a></li>
+            </ul>
+        </nav>
+
+        <!-- Categories will be inserted here -->
+        <div id="scientific-categories">
+            <div class="loading">Loading scientific categories...</div>
+        </div>
 
         <a href="projects.html" class="back-button">Back to Projects</a>
     </div>
@@ -46,6 +56,47 @@
     </div>
     
     <script>
+        // Initialize after all content is loaded, with a slight delay for GitHub Pages
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Directly add click handlers to the navigation links
+                document.querySelectorAll('.sci-categories-nav a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get the target section id from the href
+                        const targetId = this.getAttribute('href').substring(1);
+                        console.log('Clicking on link to:', targetId);
+                        
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            console.log('Found target section:', targetSection);
+                            // Calculate scroll position with offset for fixed header
+                            const headerOffset = 100; // Adjust based on your header height
+                            const elementPosition = targetSection.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            // Smooth scroll to the section
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Update active state for navigation
+                            document.querySelectorAll('.sci-categories-nav a').forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                        } else {
+                            console.log('Target section not found:', targetId);
+                            console.log('Available sections:', 
+                                Array.from(document.querySelectorAll('section[id]'))
+                                    .map(s => s.id));
+                        }
+                    });
+                });
+            }, 500); // Small delay to ensure categories are loaded
+        });
+        
         // Enable debug mode with URL parameter ?debug=true
         if (window.location.search.includes('debug=true')) {
             document.getElementById('debug').style.display = 'block';
